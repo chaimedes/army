@@ -1,0 +1,63 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+$(document).ready(function() {
+	var canv = document.getElementById("canv");
+	ctx = canv.getContext("2d");
+	var going = 0;
+	function Square() {
+		this.width = 100;
+		this.height = 100;
+	}
+
+	function Unit() {
+		this.unitCount = 50;
+		this.x = 200;
+		this.y = 100;
+		this.move = function() {
+			this.x += 10;
+		}
+		this.draw = function() {
+			ctx.fillStyle = "#ffff66";
+			ctx.strokeStyle = "#888888";
+			ctx.beginPath();
+			ctx.arc(this.x, this.y, this.unitCount, 0, 2*Math.PI);
+			ctx.stroke();
+			ctx.fill();	
+			ctx.font="20px Georgia";
+			ctx.fillStyle = "#000000";
+			ctx.fillText(this.unitCount,this.x,this.y);
+		}
+	}
+	
+	var u = new Unit();
+	going = 1;
+	var timer = window.setInterval(function() {
+		ctx.clearRect(0,0,1000,800);
+		u.move();
+		u.draw();
+	}, 100);
+	
+	$("#stopstart").click(function() {
+		if (going == 1) {
+			going = 0;
+			clearTimeout(timer);
+		}
+		else {
+			going = 1;
+			timer = window.setInterval(function() {
+				ctx.clearRect(0,0,1000,800);
+				u.move();
+				u.draw();
+			}, 100);
+		}
+	});
+});
+</script>
+</head>
+<body>
+<canvas id="canv" width=1000 height=800></canvas>
+<button id="stopstart">Start/Stop</button>
+</body>
+</html>

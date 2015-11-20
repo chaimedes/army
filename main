@@ -1,0 +1,20 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+$(document).ready(function() {
+	var canv = document.getElementById("canv");
+	ctx = canv.getContext("2d");
+	ctx.fillStyle = "#ffff66";
+	ctx.strokeStyle = "#ffff00";
+	ctx.beginPath();
+	ctx.arc(100, 100, 50, 0, 2*Math.PI);
+	ctx.fill();
+	ctx.stroke();
+});
+</script>
+</head>
+<body>
+<canvas id="canv" width=1000 height=800></canvas>
+</body>
+</html>
